@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out bot
 // @namespace    http://tampermonkey.net/
-// @version      1.1.5
+// @version      1.1.6-1
 // @description  try to take over the world!
 // @author       You
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
@@ -18,7 +18,7 @@
     const walkTableTrArr = walk_table.querySelectorAll('table > tbody > tr > td > table > tbody > tr');
     //console.log('walkTableTrArr', walkTableTrArr)
     const resWalkActiveCells = Array.from(walkTableTrArr).filter(item => {
-        console.log('--item', item)
+        console.log('--item', item.querySelectorAll('tr > td > a > img'))
         return [];
     });
 })();
