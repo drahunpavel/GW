@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out bot
-// @namespace    http://tampermonkey.net/
-// @version      1.1.6-4
+// @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
+// @version      1.1.7
 // @description  try to take over the world!
 // @author       You
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
