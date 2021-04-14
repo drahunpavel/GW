@@ -6,7 +6,7 @@
 // @author       You
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
-// @require        https://code.jquery.com/jquery-2.1.4.min.js
+// @require      https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/test.js
 // @match        https://www.gwars.ru/walk.op.php*
 // @grant        none
 // ==/UserScript==
