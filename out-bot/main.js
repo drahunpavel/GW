@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out bot
 // @namespace    http://tampermonkey.net/
-// @version      1.1.2
+// @version      1.1.3
 // @description  try to take over the world!
 // @author       You
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
@@ -15,5 +15,6 @@
     'use strict';
 
     const walk_table = document.getElementById('walk_table');
-    console.log('walk_table', walk_table)
+    const walkTableTrArr = walk_table.querySelectorAll('table > tbody > tr > td > table > tbody > tr');
+    console.log('walkTableTrArr', walkTableTrArr)
 })();
