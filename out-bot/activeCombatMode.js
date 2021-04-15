@@ -3,6 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @description  try to take over the world!
 // @author       You
+// @match        https://www.gwars.ru/b0*
 // @grant        none
 // ==/UserScript==
 
