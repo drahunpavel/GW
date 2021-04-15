@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out bot
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.8
+// @version      1.1.9
 // @description  try to take over the world!
 // @author       You
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
@@ -14,6 +14,10 @@
 /*
 1.1.8
 Подготовка к реализации перемещения по ауту
+---
+1.1.9
+Реализовано перемещение по ауту
+---
 */
 
 (function () {
@@ -33,7 +37,6 @@
     var arrowLeftBotton = null;
     var arrowRightBotton = null;
 
-
     //получаю массив ботов с точками
     Array.from(walkTableTrArr).filter((item, index) => {
         const imgArr_1 = item.querySelectorAll('tr > td > a > img');
@@ -48,15 +51,47 @@
     var unicActiveCellsArray = unique(walkActiveCellsArr);
     var actualActiveCells = bindСellsToBots(uniqBotsArray, unicActiveCellsArray);
 
-    //передвижения по ауту
-    moveOut(uniqBotsArray, actualActiveCells, arrowLeftBotton, arrowRightBotton, arrowTopBotton, arrowBottomBotton);
+    //массив с актуальным стрелками
+    var arrowObj = { top: arrowTopBotton, bottom: arrowBottomBotton, left: arrowLeftBotton, right: arrowRightBotton };
 
-    function moveOut(bots, activeCells, arrowLeft, arrowRight, arrowTop, arrowBottom) {
-        console.log('--move', bots, activeCells, arrowLeft, arrowRight, arrowTop, arrowBottom);
+    //передвижения по ауту
+    moveOut(uniqBotsArray, actualActiveCells, arrowLeftBotton, arrowRightBotton, arrowTopBotton, arrowBottomBotton, arrowObj);
+
+    function moveOut(bots, activeCells, arrowLeft, arrowRight, arrowTop, arrowBottom, arrowObj) {
+        console.log('--move', arrowObj);
+        //const arrowArr = [arrowLeft, arrowRight, arrowTop, arrowBottom];
+        const direction = sessionStorage.getItem('direction');
+        var currentDirection;
+        if (!direction) {
+            sessionStorage.setItem('direction', 'top');
+            document.location.reload();
+            return;
+        };
+
+        //получаем направление из хранилища
+        if (direction) {
+            //если это направление не акутально
+            //выбираем актуальные направление, перезаписываем в хранилище, делаем ход
+            if (!arrowObj[direction]) {
+                var tempArr = [];
+                for (var variable in arrowObj) {
+                    if (arrowObj[variable]) {
+                        tempArr.push(variable);
+                    };
+                };
+                var tempItem = tempArr[Math.floor(Math.random() * tempArr.length)];
+                sessionStorage.setItem('direction', tempItem);
+                currentDirection = arrowObj[tempItem];
+                //document.location.reload();
+                //return;
+            } else {
+                currentDirection = arrowObj[direction];
+            };
+        };
 
         window.setTimeout(function () {
             console.log('--temir')
-            arrowLeft.click();
+            //currentDirection.click();
         }, randomInteger(timerMinMove, timerMaxMove));
     };
 
