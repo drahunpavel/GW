@@ -9,5 +9,5 @@
 (function () {
     'use strict';
 
-    console.log('--test script')
+    console.log('--11111')
 })();
