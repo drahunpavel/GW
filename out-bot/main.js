@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out bot
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.9
+// @version      1.1.10
 // @description  try to take over the world!
 // @author       You
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
@@ -17,6 +17,9 @@
 ---
 1.1.9
 Реализовано перемещение по ауту
+---
+1.1.10
+Реализовано перемещение по ауту и вход в заявку
 ---
 */
 
@@ -82,16 +85,38 @@
                 var tempItem = tempArr[Math.floor(Math.random() * tempArr.length)];
                 sessionStorage.setItem('direction', tempItem);
                 currentDirection = arrowObj[tempItem];
-                //document.location.reload();
-                //return;
+                document.location.reload();
+                return;
             } else {
                 currentDirection = arrowObj[direction];
             };
         };
 
         window.setTimeout(function () {
-            console.log('--temir')
-            //currentDirection.click();
+
+            //если нет активных клеток рядом с поками, начинается движение
+            if (!actualActiveCells.length) {
+                if (currentDirection) {
+                    currentDirection.click();
+                } else {
+                    console.log('--что-то пошло не так, обновлю страницу')
+                    document.location.reload();
+                };
+                return;
+            } else {
+                //получаю рандомную клетку из списка активных клеток
+                var activeCell = actualActiveCells[Math.floor(Math.random() * actualActiveCells.length)];
+                if (activeCell) {
+                    activeCell.click();
+                    console.log('--получил клетку, нажимаю не ее')
+                } else {
+                    console.log('--видимо уже в заявке или что-то пошло не так, обновлю страницу')
+                    document.location.reload();
+                };
+                return;
+            };
+
+
         }, randomInteger(timerMinMove, timerMaxMove));
     };
 
