@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out bot
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.7
+// @version      1.1.8
 // @description  try to take over the world!
 // @author       You
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
@@ -11,27 +11,54 @@
 // @grant        none
 // ==/UserScript==
 
+/*
+1.1.8
+Подготовка к реализации перемещения по ауту
+*/
+
 (function () {
     'use strict';
+
+    const timerMinMove = 1000;
+    const timerMaxMove = 3000;
 
     const walk_table = document.getElementById('walk_table');
     const walkTableTrArr = walk_table.querySelectorAll('table > tbody > tr > td > table > tbody > tr');
     var walkActiveCellsArr = []; //все активные клетки вокруг покемонов
     var allBotsArr = [];
 
+    //Кнопки направления движения
+    var arrowTopBotton = null;
+    var arrowBottomBotton = null;
+    var arrowLeftBotton = null;
+    var arrowRightBotton = null;
+
+
     //получаю массив ботов с точками
     Array.from(walkTableTrArr).filter((item, index) => {
         const imgArr_1 = item.querySelectorAll('tr > td > a > img');
         const imgArr_2 = item.querySelectorAll('tr > td > img');
+        const imgArr_3 = item.querySelectorAll('tr > td > a');
 
         getAllBotsAndActiveCells(imgArr_1, imgArr_2);
+        getDirectionButtons(imgArr_3);
     });
 
     var uniqBotsArray = unique(allBotsArr);
-    var unicActiveCallsArray = unique(walkActiveCellsArr);
-    var actualActiveCalls = bindСellsToBots(uniqBotsArray, unicActiveCallsArray);
+    var unicActiveCellsArray = unique(walkActiveCellsArr);
+    var actualActiveCells = bindСellsToBots(uniqBotsArray, unicActiveCellsArray);
 
-    console.log('--actualActiveCalls', actualActiveCalls);
+    //передвижения по ауту
+    moveOut(uniqBotsArray, actualActiveCells, arrowLeftBotton, arrowRightBotton, arrowTopBotton, arrowBottomBotton);
+
+    function moveOut(bots, activeCells, arrowLeft, arrowRight, arrowTop, arrowBottom) {
+        console.log('--move', bots, activeCells, arrowLeft, arrowRight, arrowTop, arrowBottom);
+
+        window.setTimeout(function () {
+            console.log('--temir')
+            arrowLeft.click();
+        }, randomInteger(timerMinMove, timerMaxMove));
+    };
 
     function bindСellsToBots(botsArr, cellsArr) {
         var resActiveCalls = [];
@@ -48,6 +75,23 @@
         })
         var uniqActiveCalls = unique(resActiveCalls);
         return uniqActiveCalls;
+    };
+
+    function getDirectionButtons(nodeList) {
+        Array.from(nodeList).filter((itemImg, index) => {
+            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.ru/i/arrow_top.png') {
+                arrowTopBotton = itemImg;
+            }
+            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.ru/i/arrow_bottom.png') {
+                arrowBottomBotton = itemImg;
+            }
+            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.ru/i/arrow_left.png') {
+                arrowLeftBotton = itemImg;
+            }
+            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.ru/i/arrow_right.png') {
+                arrowRightBotton = itemImg;
+            }
+        });
     };
 
     function getAllBotsAndActiveCells(nodeList1, nodeList2) {
@@ -82,4 +126,12 @@
         }
         return result;
     };
+
+    //гереация рандомного числа для отработки таймера ходов
+    function randomInteger(min, max) {
+        // получить случайное число от (min-0.5) до (max+0.5)
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
+    };
+
 })();
