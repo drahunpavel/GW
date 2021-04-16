@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name         GW out bot
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.11
+// @version      1.1.12
 // @description  try to take over the world!
 // @author       You
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
-// @require      https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/activeCombatMode.js
 // @match        https://www.gwars.ru/walk.op.php*
 // @grant        none
 // ==/UserScript==
