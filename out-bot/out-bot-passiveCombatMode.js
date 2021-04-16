@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         GW out-bot-activeCombatMode
+// @name         GW out-bot-passiveCombatMode
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
 // @version      1.1.1
 // @description  try to take over the world!
@@ -11,5 +11,5 @@
 (function () {
     'use strict';
 
-    console.log('--activeCombatMode')
+    console.log('--passiveCombatMode')
 })();
