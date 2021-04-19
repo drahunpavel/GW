@@ -1,12 +1,19 @@
 // ==UserScript==
-// @name         GW out-bot-fightResult
+// @name         GW out-bot-passiveCombatMode
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.1
+// @version      1.1.2
 // @description  try to take over the world!
-// @author       You
+// @author       https://github.com/drahunpavel
+// @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-passiveCombatMode.js
+// @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-passiveCombatMode.js
 // @match        https://www.gwars.ru/warlog.php*
 // @grant        none
 // ==/UserScript==
+
+/*
+---1.1.2
+
+*/
 
 (function () {
     'use strict';
