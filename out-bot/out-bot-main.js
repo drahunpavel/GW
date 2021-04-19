@@ -7,6 +7,7 @@
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
 // @match        https://www.gwars.ru/walk.op.php*
+// @match        https://www.gwars.ru/walk.p.php*
 // @grant        none
 // ==/UserScript==
 
