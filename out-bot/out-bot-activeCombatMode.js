@@ -16,8 +16,7 @@
 ---1.1.2
 Доработано получание и использование навыков персонажа
 ---1.1.3
-Доработано примитивное использование навыков НПС
----
+доработка
 */
 
 (function () {
@@ -78,10 +77,10 @@
                     if (+actualBotHP < minHPforFinishing) {
                         console.log('--Включаем навык на оружие: Добивание хп')
                         specialActiveSkill.checked = true;
-                    };
 
-                    if (specialNPCskill && specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар') {
-                        specialNPCskill.click();
+                        if (specialNPCskill && specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар') {
+                            specialNPCskill.click();
+                        };
                     };
             };
             switch (nameGeneralSkill) {
@@ -93,9 +92,10 @@
                     if (+actualUserHP / +allUserHP < 0.7) {
                         console.log('--Включаем общий навык: Восстановление здоровья')
                         generalActiveSkill.checked = true;
-                    };
-                    if (generalNPCskill && generalNPCskill.querySelectorAll('a > img')[0].title === 'Медик') {
-                        generalNPCskill.click();
+
+                        if (generalNPCskill && generalNPCskill.querySelectorAll('a > img')[0].title === 'Медик') {
+                            generalNPCskill.click();
+                        };
                     };
             };
         };
