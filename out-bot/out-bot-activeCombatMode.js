@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out-bot-activeCombatMode
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.3
+// @version      1.1.2
 // @description  try to take over the world!
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-activeCombatMode.js
@@ -15,8 +15,7 @@
 реализованы автоходы, без навыков
 ---1.1.2
 Доработано получание и использование навыков персонажа
----1.1.3
-доработка
+---
 */
 
 (function () {
