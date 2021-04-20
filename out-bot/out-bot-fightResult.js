@@ -1,43 +1,38 @@
 // ==UserScript==
-// @name         GW out-bot-notifications
+// @name         GW out-bot-passiveCombatMode
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.1
+// @version      1.1.2
 // @description  try to take over the world!
-// @author       You
-// @match        *
+// @author       https://github.com/drahunpavel
+// @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-fightResult.js
+// @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-fightResult.js
+// @match        https://www.gwars.ru/b0*
 // @grant        none
 // ==/UserScript==
+
+/*
+---1.1.2
+
+*/
 
 (function () {
     'use strict';
 
-    const captcha = document.getElementById("robotable");
+    const minTimer = 2000;
+    const maxTimer = 3000;
 
-    if (captcha) {
-        console.log('--У нас капча!', captcha)
-        fetchData('<b>Срочно ввести капчу</b>')
+    const selectedOppenent = document.getElementById('euids'); //выбор противника
+
+    if (!selectedOppenent) {
+        window.setTimeout(function () {
+            document.location.reload();
+        }, randomInteger(minTimer, maxTimer));
     };
 
-    function fetchData(text) {
-        var chatid = "-1001303709234";
-        var token = "1798988669:AAFyw4E4m8yrLmaQM7OjQTCPQh-vmWxfHwI";
-        //var text = "<div>Текст</div> для <b>нашего</b> <strong>бота</strong>";
-        var data = "parse_mode=HTML&text=" + encodeURIComponent(text);
-
-        //------------
-        var http = new XMLHttpRequest();
-        var url = "https://api.telegram.org/bot1798988669:AAFyw4E4m8yrLmaQM7OjQTCPQh-vmWxfHwI/sendMessage?chat_id=@GW_management";
-        var params = `parse_mode=HTML&text=${text}`;
-        http.open('POST', url, true);
-
-        //Send the proper header information along with the request
-        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-        http.onreadystatechange = function () {//Call a function when the state changes.
-            if (http.readyState == 4 && http.status == 200) {
-                //console.log(http.responseText);
-            }
-        }
-        http.send(params);
+    //гереация рандомного числа для отработки таймера ходов
+    function randomInteger(min, max) {
+        // получить случайное число от (min-0.5) до (max+0.5)
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
     };
 })();
