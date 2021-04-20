@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out-bot-passiveCombatMode
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.2
+// @version      1.1.3
 // @description  try to take over the world!
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-fightResult.js
