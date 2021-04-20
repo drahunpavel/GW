@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out-bot-activeCombatMode
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.3
+// @version      1.1.4
 // @description  try to take over the world!
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-activeCombatMode.js
@@ -15,6 +15,8 @@
 реализованы автоходы, без навыков
 ---1.1.2
 Доработано получание и использование навыков персонажа
+---1.1.4
+активные навыки работают сразу
 ---
 */
 
@@ -75,11 +77,11 @@
                     var allBotHP = allHParr[1];
                     if (+actualBotHP < minHPforFinishing) {
                         console.log('--Включаем навык на оружие: Добивание хп')
-                        specialActiveSkill.checked = true;
+                    };
+                    specialActiveSkill.checked = true;
 
-                        if (specialNPCskill && specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар') {
-                            specialNPCskill.click();
-                        };
+                    if (specialNPCskill && specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар') {
+                        specialNPCskill.click();
                     };
             };
             switch (nameGeneralSkill) {
@@ -90,11 +92,11 @@
                     var allUserHP = allHPUserArr[1];
                     if (+actualUserHP / +allUserHP < 0.7) {
                         console.log('--Включаем общий навык: Восстановление здоровья')
-                        generalActiveSkill.checked = true;
+                    };
+                    generalActiveSkill.checked = true;
 
-                        if (generalNPCskill && generalNPCskill.querySelectorAll('a > img')[0].title === 'Медик') {
-                            generalNPCskill.click();
-                        };
+                    if (generalNPCskill && generalNPCskill.querySelectorAll('a > img')[0].title === 'Медик') {
+                        generalNPCskill.click();
                     };
             };
         };
