@@ -80,7 +80,7 @@
                     };
                     specialActiveSkill.checked = true;
 
-                    if (specialNPCskill && specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар') {
+                    if (specialNPCskill && (specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар' || specialNPCskill.querySelectorAll('a > img')[0].title === 'Выстрел правши')) {
                         specialNPCskill.click();
                     };
             };
@@ -92,11 +92,11 @@
                     var allUserHP = allHPUserArr[1];
                     if (+actualUserHP / +allUserHP < 0.7) {
                         console.log('--Включаем общий навык: Восстановление здоровья')
-                    };
-                    generalActiveSkill.checked = true;
+                        generalActiveSkill.checked = true;
 
-                    if (generalNPCskill && generalNPCskill.querySelectorAll('a > img')[0].title === 'Медик') {
-                        generalNPCskill.click();
+                        if (generalNPCskill && generalNPCskill.querySelectorAll('a > img')[0].title === 'Медик') {
+                            generalNPCskill.click();
+                        };
                     };
             };
         };
