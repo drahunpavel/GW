@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         GW out-bot-main
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.15
+// @version      1.1.16
 // @description  try to take over the world!
 // @author       https://github.com/drahunpavel
-// @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
-// @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
+// @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-main.js
+// @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-main.js
 // @match        https://www.gwars.ru/walk.op.php*
 // @match        https://www.gwars.ru/walk.p.php*
 // @grant        none
@@ -21,10 +21,12 @@
 1.1.10
 Реализовано перемещение по ауту и вход в заявку
 ---
----
 1.1.15
 Реализовано перемещение персонажа в рамках "хороших секторо"
 И возраст из "плохих секторов
+---
+1.1.16
+пофишены updateURL, downloadURL
 */
 
 (function () {
