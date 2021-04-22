@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         GW out-bot-main
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.13
+// @version      1.1.15
 // @description  try to take over the world!
-// @author       You
+// @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/main.js
 // @match        https://www.gwars.ru/walk.op.php*
@@ -21,6 +21,10 @@
 1.1.10
 Реализовано перемещение по ауту и вход в заявку
 ---
+---
+1.1.15
+Реализовано перемещение персонажа в рамках "хороших секторо"
+И возраст из "плохих секторов
 */
 
 (function () {
@@ -29,6 +33,11 @@
     const timerMinMove = 1000;
     const timerMaxMove = 3000;
 
+    const badSectors = ['South Normand', 'Alpha Three'];
+
+    const body = document.getElementsByClassName('txt');
+    const sectorName = body[1].querySelectorAll('td > nobr > b')[0].innerText;
+    console.log('--sectorName', sectorName)
     const walk_table = document.getElementById('walk_table');
     const walkTableTrArr = walk_table.querySelectorAll('table > tbody > tr > td > table > tbody > tr');
     var walkActiveCellsArr = []; //все активные клетки вокруг покемонов
@@ -93,30 +102,61 @@
         };
 
         window.setTimeout(function () {
+            //Проверяю, подходит ли сектр в список плохих секторов
+            const resIsBadSectors = badSectors.some(item => item === sectorName);
 
-            //если нет активных клеток рядом с поками, начинается движение
-            if (!actualActiveCells.length) {
-                if (currentDirection) {
-                    currentDirection.click();
+            //если "хороший" сектор, работаем в прежнем режиме
+            if (!resIsBadSectors) {
+                //если нет активных клеток рядом с поками, начинается движение
+                if (!actualActiveCells.length) {
+                    if (currentDirection) {
+                        currentDirection.click();
+                    } else {
+                        console.log('--что-то пошло не так, обновлю страницу')
+                        document.location.reload();
+                    };
+                    return;
                 } else {
-                    console.log('--что-то пошло не так, обновлю страницу')
-                    document.location.reload();
+                    //получаю рандомную клетку из списка активных клеток
+                    var activeCell = actualActiveCells[Math.floor(Math.random() * actualActiveCells.length)];
+                    //если есть кнопка для покемона и это не "плохой сектор"
+                    if (activeCell && !resIsBadSectors) {
+                        activeCell.click();
+                        console.log('--получил клетку, нажимаю не ее')
+                    } else {
+                        console.log('--видимо уже в заявке или что-то пошло не так, обновлю страницу', currentDirection)
+                        document.location.reload();
+                    };
+                    return;
                 };
-                return;
             } else {
-                //получаю рандомную клетку из списка активных клеток
-                var activeCell = actualActiveCells[Math.floor(Math.random() * actualActiveCells.length)];
-                if (activeCell) {
-                    activeCell.click();
-                    console.log('--получил клетку, нажимаю не ее')
+                const direction = sessionStorage.getItem('direction');
+                if (direction === 'top') {
+                    sessionStorage.setItem('direction', "bottom");
+                    arrowObj["bottom"].click();
+                    return;
+                } else if (direction === 'bottom') {
+                    sessionStorage.setItem('direction', "top");
+                    arrowObj["top"].click();
+                    return;
+                } else if (direction === 'left') {
+                    sessionStorage.setItem('direction', "right");
+                    arrowObj["right"].click();
+                    return;
+                } else if (direction === 'right') {
+                    //костыль для одного места
+                    if (sectorName === 'Alpha Three') {
+                        sessionStorage.setItem('direction', "right");
+                        arrowObj["right"].click();
+                        return;
+                    };
+                    sessionStorage.setItem('direction', "left");
+                    arrowObj["left"].click();
+                    return;
                 } else {
-                    console.log('--видимо уже в заявке или что-то пошло не так, обновлю страницу')
-                    document.location.reload();
-                };
-                return;
+                    console.log('Непонятный маршрут в плохом сектор, я заблудился')
+                }
             };
-
-
         }, randomInteger(timerMinMove, timerMaxMove));
     };
 
