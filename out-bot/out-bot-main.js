@@ -32,8 +32,8 @@
 (function () {
     'use strict';
 
-    const timerMinMove = 1000;
-    const timerMaxMove = 3000;
+    const timerMinMove = 800;
+    const timerMaxMove = 1500;
 
     const badSectors = ['South Normand', 'Alpha Three'];
 
