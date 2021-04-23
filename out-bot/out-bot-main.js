@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out-bot-main
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.16
+// @version      1.1.17
 // @description  try to take over the world!
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-main.js
