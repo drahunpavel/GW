@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out-bot-activeCombatMode
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.4
+// @version      1.1.5
 // @description  try to take over the world!
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-activeCombatMode.js
@@ -23,8 +23,8 @@
 (function () {
     'use strict';
 
-    const minTimer = 2000;
-    const maxTimer = 3000;
+    const minTimer = 800;
+    const maxTimer = 1500;
 
     const minHPforFinishing = 200;
 
