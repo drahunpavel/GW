@@ -23,8 +23,8 @@
 (function () {
     'use strict';
 
-    const minTimer = 800;
-    const maxTimer = 1500;
+    const minTimer = 2000;
+    const maxTimer = 3000;
 
     const minHPforFinishing = 200;
 

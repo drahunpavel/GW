@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name         GW out-bot-passiveCombatMode
+// @name         GW out-bot-fightResult
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.3
+// @version      1.1.4
 // @description  try to take over the world!
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-fightResult.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-fightResult.js
-// @match        https://www.gwars.ru/b0*
+// @match        https://www.gwars.ru/warlog.php*
 // @grant        none
 // ==/UserScript==
 
@@ -18,16 +18,16 @@
 (function () {
     'use strict';
 
-    const minTimer = 2000;
-    const maxTimer = 3000;
+    const minTimer = 1000;
+    const maxTimer = 2000;
 
-    const selectedOppenent = document.getElementById('euids'); //выбор противника
+    const finaleTable = document.getElementById("finaltable");//таблица с результатом
 
-    if (!selectedOppenent) {
+    if (finaleTable) {
         window.setTimeout(function () {
-            document.location.reload();
+            window.location.replace("https://www.gwars.ru/walk.op.php");
         }, randomInteger(minTimer, maxTimer));
-    };
+    }
 
     //гереация рандомного числа для отработки таймера ходов
     function randomInteger(min, max) {

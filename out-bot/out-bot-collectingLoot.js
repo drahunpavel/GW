@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GW out-bot-collectingLoot
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.2
+// @version      1.1.3
 // @description  try to take over the world!
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-collectingLoot.js
@@ -21,7 +21,7 @@
     function pickUpLoot() {
         const takeButton = document.getElementById("takebutt"); //кнопка "Взять"
         const lootDescription = document.getElementsByClassName('wb')[5];
-        const loot = lootDescription.querySelectorAll('td > b')[1].innerText;
+        const loot = lootDescription && lootDescription.querySelectorAll('td > b')[1].innerText;
 
         if (takeButton && loot) {
             if (loot === lootName2 || loot === lootName3) {
@@ -29,4 +29,6 @@
             };
         };
     };
+
+    pickUpLoot();
 })();
