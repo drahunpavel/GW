@@ -6,7 +6,7 @@
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-notifications.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-notifications.js
-// @match        https://www.gwars.ru/*
+// @match        https://www.gwars.io/*
 // @grant        none
 // ==/UserScript==
 

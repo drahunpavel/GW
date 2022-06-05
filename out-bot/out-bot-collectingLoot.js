@@ -6,8 +6,9 @@
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-collectingLoot.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-collectingLoot.js
-// @match        https://www.gwars.ru/walk.op.php*
-// @match        https://www.gwars.ru/walk.p.php*
+// @match        https://www.gwars.io/walk.op.php*
+// @match        https://www.gwars.io/walk.p.php*
+// @match        https://www.gwars.io/walk.ep.php*
 // @grant        none
 // ==/UserScript==
 
@@ -24,7 +25,7 @@
         const loot = lootDescription && lootDescription.querySelectorAll('td > b')[1].innerText;
 
         if (takeButton && loot) {
-            if (loot === lootName2 || loot === lootName3) {
+            if (loot === lootName2 || loot === lootName3 || loot === lootName1) {
                 takeButton.click();
             };
         };

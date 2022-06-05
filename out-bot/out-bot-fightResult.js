@@ -6,7 +6,7 @@
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-fightResult.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-fightResult.js
-// @match        https://www.gwars.ru/warlog.php*
+// @match        https://www.gwars.io/warlog.php*
 // @grant        none
 // ==/UserScript==
 
@@ -25,7 +25,7 @@
 
     if (finaleTable) {
         window.setTimeout(function () {
-            window.location.replace("https://www.gwars.ru/walk.op.php");
+            window.location.replace("https://www.gwars.io/walk.op.php");
         }, randomInteger(minTimer, maxTimer));
     }
 

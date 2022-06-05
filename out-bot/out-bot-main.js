@@ -6,8 +6,9 @@
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-main.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-main.js
-// @match        https://www.gwars.ru/walk.op.php*
-// @match        https://www.gwars.ru/walk.p.php*
+// @match        https://www.gwars.io/walk.op.php*
+// @match        https://www.gwars.io/walk.p.php*
+// @match        https://www.gwars.io/walk.ep.php*
 // @grant        none
 // ==/UserScript==
 
@@ -33,7 +34,7 @@
     'use strict';
 
     const timerMinMove = 800;
-    const timerMaxMove = 1500;
+    const timerMaxMove = 1200;
 
     const badSectors = ['South Normand', 'Alpha Three'];
 
@@ -181,16 +182,16 @@
 
     function getDirectionButtons(nodeList) {
         Array.from(nodeList).filter((itemImg, index) => {
-            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.ru/i/arrow_top.png') {
+            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.io/i/arrow_top.png') {
                 arrowTopBotton = itemImg;
             }
-            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.ru/i/arrow_bottom.png') {
+            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.io/i/arrow_bottom.png') {
                 arrowBottomBotton = itemImg;
             }
-            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.ru/i/arrow_left.png') {
+            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.io/i/arrow_left.png') {
                 arrowLeftBotton = itemImg;
             }
-            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.ru/i/arrow_right.png') {
+            if (itemImg.getElementsByTagName('img')[0].getAttribute("src") === 'https://images.gwars.io/i/arrow_right.png') {
                 arrowRightBotton = itemImg;
             }
         });
@@ -199,20 +200,20 @@
     function getAllBotsAndActiveCells(nodeList1, nodeList2) {
         Array.from(nodeList2).filter((itemImg, index) => {
 
-            if (itemImg.getAttribute("src") === 'https://images.gwars.ru/q-new/bot100.gif') {
+            if (itemImg.getAttribute("src") === 'https://images.gwars.io/q-new/bot100.gif') {
                 allBotsArr.push(itemImg)
             };
 
-            if (itemImg.getAttribute("src") === 'https://images.gwars.ru/q-new/t_a.gif') {
+            if (itemImg.getAttribute("src") === 'https://images.gwars.io/q-new/t_a.gif') {
                 walkActiveCellsArr.push(itemImg);
             };
         });
         Array.from(nodeList1).filter((itemImg, index) => {
-            if (itemImg.getAttribute("src") === 'https://images.gwars.ru/q-new/bot100.gif') {
+            if (itemImg.getAttribute("src") === 'https://images.gwars.io/q-new/bot100.gif') {
                 allBotsArr.push(itemImg)
             };
 
-            if (itemImg.getAttribute("src") === 'https://images.gwars.ru/q-new/t_a.gif') {
+            if (itemImg.getAttribute("src") === 'https://images.gwars.io/q-new/t_a.gif') {
                 walkActiveCellsArr.push(itemImg);
             };
         });
@@ -231,7 +232,6 @@
 
     //гереация рандомного числа для отработки таймера ходов
     function randomInteger(min, max) {
-        // получить случайное число от (min-0.5) до (max+0.5)
         let rand = min - 0.5 + Math.random() * (max - min + 1);
         return Math.round(rand);
     };

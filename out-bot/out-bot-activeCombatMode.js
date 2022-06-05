@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         GW out-bot-activeCombatMode
 // @namespace    https://github.com/drahunpavel/GW/tree/main/out-bot
-// @version      1.1.5
+// @version      1.1.4
 // @description  try to take over the world!
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-activeCombatMode.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-activeCombatMode.js
-// @match        https://www.gwars.ru/b0*
+// @match        https://www.gwars.io/b0*
 // @grant        none
 // ==/UserScript==
 
@@ -56,6 +56,10 @@
         const generalNPCskill = greenbuttonTags[0]; //общий навык нпс, в моем случае - медик
         const specialNPCskill = greenbuttonTags[1]; //навык на оружие, в моем случае ава
 
+
+        const grenade = document.getElementById("bagaboom");
+
+
         const sendMoveButton = battleСontrol.getElementsByTagName('table') && battleСontrol.getElementsByClassName('wb') && battleСontrol.getElementsByTagName('a');
 
         //если есть кнопка сделать ход, кликаю по ней
@@ -67,23 +71,50 @@
         };
 
         function enableSpecialActiveSkillUser(userItem, botItem, nameGeneralSkill, nameSpecialSkill) {
+            if (specialNPCskill && (specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар' || specialNPCskill.querySelectorAll('a > img')[0].title === 'Выстрел правши')) {
+                specialNPCskill.click();
+            };
+
             switch (nameSpecialSkill) {
                 case 'Авиаудар':
                 case 'Попутный ветер':
                 case 'Выстрел правши':
+                case 'Бронебойные пули':
+                case 'Дымовой залп':
+                case 'Выстрел из тени':
                     var allBotHPItem = botItem[0].innerText.match(/(?<=HP: )\d{1,4}\/\d{1,4}/g);
                     var allHParr = allBotHPItem[0].split('/');
                     var actualBotHP = allHParr[0];
                     var allBotHP = allHParr[1];
-                    if (+actualBotHP < minHPforFinishing) {
-                        console.log('--Включаем навык на оружие: Добивание хп')
-                    };
-                    specialActiveSkill.checked = true;
+                    //if (+actualBotHP < minHPforFinishing) {
+                    //    console.log('--Включаем навык на оружие: Добивание хп')
+                    //};
 
-                    if (specialNPCskill && (specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар' || specialNPCskill.querySelectorAll('a > img')[0].title === 'Выстрел правши')) {
+                    if (grenade) {
+                        grenade.checked = true;
+                    } else {
+                        specialActiveSkill.checked = true;
+                    }
+
+
+                    if (specialNPCskill && (specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар' || specialNPCskill.querySelectorAll('a > img')[0].title === 'Выстрел правши' || specialNPCskill.querySelectorAll('a > img')[0].title === 'Попутный ветер')) {
+                        specialNPCskill.click();
+                    };
+
+                //на случай, когда нет нужных навыков
+                default:
+
+                    if (grenade) {
+                        grenade.checked = true;
+                    } else {
+                        if (specialActiveSkill) { specialActiveSkill.checked = true; }
+                    }
+
+                    if (specialNPCskill && (specialNPCskill.querySelectorAll('a > img')[0].title === 'Авиаудар' || specialNPCskill.querySelectorAll('a > img')[0].title === 'Выстрел правши' || specialNPCskill.querySelectorAll('a > img')[0].title === 'Попутный ветер')) {
                         specialNPCskill.click();
                     };
             };
+
             switch (nameGeneralSkill) {
                 case 'Перевязка':
                     var allUserHPItem = userItem[0].innerText.match(/(?<=HP: )\d{1,4}\/\d{1,4}/g);

@@ -6,7 +6,7 @@
 // @author       https://github.com/drahunpavel
 // @updateURL    https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-passiveCombatMode.js
 // @downloadURL  https://raw.githubusercontent.com/drahunpavel/GW/main/out-bot/out-bot-passiveCombatMode.js
-// @match        https://www.gwars.ru/b0*
+// @match        https://www.gwars.io/b0*
 // @grant        none
 // ==/UserScript==
 
